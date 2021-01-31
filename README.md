@@ -1,0 +1,2 @@
+# Musify-Me-Music-for-the-Moment-
+The goal of this project is to create a system that will understand the mood and topic of any given conversation and play music befitting the mood. The system will have speech to text capabilities and translate what is being said in a conversation to text. Sentiment analysis will then be used to determine the tone and mood. Then, with access to the internet and maybe Spotify, the system will play music best fit for the moment based on the evaluations.
