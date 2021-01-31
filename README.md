@@ -11,7 +11,7 @@ Sundays 10am-12pm CST<br />
 [Backlog](https://drive.google.com/file/d/1tjnGv_8VtmuNrllzuTKmQ6bwVQF-XZYZ/view?usp=sharing)<br />
 [GitHub Repository](https://github.com/alejandrodavidmalavet/Musify-Me-Music-for-the-Moment-)<br />
 
-**Initial Skill Assessment :**
+**Initial Skill Assessment :**<br />
 ***Jonathan :*** 	Front end, web development, database management, Python, NLP, ML/AI<br />
 ***Romir :*** 	Backend, NLP, nltk library, Python, Javascript, React<br />
 ***Alejandro :*** 	ML, AI, Front-End, UI/UX Design, Python, JavaScript, HTML, CSS<br />
