@@ -6,10 +6,10 @@ The goal of this project is to create a system that will understand the mood and
 
 Initial Schedule:
 Sundays 10am-12pm CST
-When to Meet : (https://www.when2meet.com/?10772642-Iqps8)
-Slack : (https://undergraduate-qef2628.slack.com/archives/G01KXDUGGEA)
-Backlog : (https://drive.google.com/file/d/1tjnGv_8VtmuNrllzuTKmQ6bwVQF-XZYZ/view?usp=sharing)
-Git Repository: (https://github.com/alejandrodavidmalavet/Musify-Me-Music-for-the-Moment-)
+[When to Meet](https://www.when2meet.com/?10772642-Iqps8)
+[Slack](https://undergraduate-qef2628.slack.com/archives/G01KXDUGGEA)
+[Backlog](https://drive.google.com/file/d/1tjnGv_8VtmuNrllzuTKmQ6bwVQF-XZYZ/view?usp=sharing)
+[GitHub Repository](https://github.com/alejandrodavidmalavet/Musify-Me-Music-for-the-Moment-)
 
 Initial Skill Assessment:
 Jonathan : 	Front end, web development, database management, Python, NLP, ML/AI
