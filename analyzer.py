@@ -22,8 +22,6 @@ class AnalyzeTone():
             content_type='application/json'
         ).get_result()
 
-        # print(analysis['document_tone']['tones'][0])
-
         try:
             for each in analysis['sentences_tone']:
                 t = each['tones']
@@ -36,9 +34,14 @@ class AnalyzeTone():
             self.tones[analysis['document_tone']['tones'][0]['tone_name']] = 1
     
     def result(self):
-        return [self.tones, max(self.tones, key=self.tones.get)]
+        try:
+            return [self.tones, max(self.tones, key=self.tones.get)]
+        except:
+            print("Tone analyzer works really shitty for some sentences, and this is one of those cases.")
+            print("Tone can't be found.")
+            return []
 
 if __name__ == "__main__":
-    at = AnalyzeTone("I hope this works.")
+    at = AnalyzeTone("This is a test sentence. This works!")
     at.analyze()
     print(at.result())

@@ -10,6 +10,9 @@ api_key = "AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g"
 webbrowser.register("chrome", None,
             webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome"))
 
+# webbrowser.register("chrome", None,
+#             webbrowser.BackgroundBrowser("C:\ProgramData\Microsoft\Windows\Start Menu\Programs"))
+
 #request format
 youtube = build("youtube", "v3", developerKey=api_key)
 
