@@ -36,9 +36,11 @@ speech_to_text = SpeechToTextV1(authenticator=authenticator)
 class MyRecognizeCallback(RecognizeCallback):
     def __init__(self):
         RecognizeCallback.__init__(self)
+        self.complete_transcript = []
 
     def on_transcription(self, transcript):
         print(transcript)
+        self.complete_transcript.append(transcript[0]['transcript'])
 
     def on_connected(self):
         print('Connection was successful')
@@ -60,6 +62,9 @@ class MyRecognizeCallback(RecognizeCallback):
 
     def on_close(self):
         print("Connection closed")
+        print(self.complete_transcript)
+        return self.complete_transcript
+
 
 # this function will initiate the recognize service and pass in the AudioSource
 def recognize_using_weboscket(*args):

@@ -1,5 +1,4 @@
 import json
-import pandas as pd
 from ibm_watson import ToneAnalyzerV3
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
@@ -13,8 +12,6 @@ class AnalyzeTone():
             authenticator=self.authenticator
         )
         self.tone_analyzer.set_service_url("https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/eb91ab5d-f42d-4fb8-9a20-a4dd9c49ef1f")
-
-        
 
     def analyze(self):    
         analysis = self.tone_analyzer.tone(
