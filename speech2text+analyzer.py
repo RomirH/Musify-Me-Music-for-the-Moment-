@@ -1,8 +1,8 @@
 from analyzer import AnalyzeTone
-from rt_speech2text import MyRecognizeCallback
+from speech_to_text import SpeechToText
 
 if __name__ == "__main__":
-    rt = AnalyzeTone("This is a test sentence. This works!")
+    rt = AnalyzeTone("This is a test sentence. Why isn't this working.")
     rt.analyze()
     print(rt.result())
-    mrc = MyRecognizeCallback()
+    SpeechToText()
