@@ -1,129 +1,78 @@
 import pyaudio
 from ibm_watson import SpeechToTextV1
-from ibm_watson.websocket import RecognizeCallback, AudioSource
+from ibm_watson.websocket import AudioSource
 from threading import Thread
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-from analyzer import AnalyzeTone
 
 try:
     from Queue import Queue, Full
 except ImportError:
     from queue import Queue, Full
 
-###############################################
-#### Initalize queue to store the recordings ##
-###############################################
 CHUNK = 1024
-# Note: It will discard if the websocket client can't consumme fast enough
-# So, increase the max size as per your choice
 BUF_MAX_SIZE = CHUNK * 10
-# Buffer to store audio
-q = Queue(maxsize=int(round(BUF_MAX_SIZE / CHUNK)))
 
-# Create an instance of AudioSource
-audio_source = AudioSource(q, True, True)
-
-###############################################
-#### Prepare Speech to Text Service ########
-###############################################
-
-# initialize speech to text service
-authenticator = IAMAuthenticator('1gJQDKekWxkirik9EdSYTYRA42vd0UIk2aFONeAD-aYU')
-speech_to_text = SpeechToTextV1(authenticator=authenticator)
-
-# define callback for the speech to text service
-class MyRecognizeCallback(RecognizeCallback):
-    def __init__(self):
-        RecognizeCallback.__init__(self)
-        self.complete_transcript = []
-
-    def on_transcription(self, transcript):
-        print(transcript[0]['transcript'])
-        self.complete_transcript.append(transcript[0]['transcript'])
-        rt = AnalyzeTone(transcript[0]['transcript'])
-
-    def on_connected(self):
-        print('Connection was successful')
-
-    def on_error(self, error):
-        print('Error received: {}'.format(error))
-
-    def on_inactivity_timeout(self, error):
-        print('Inactivity timeout: {}'.format(error))
-
-    def on_listening(self):
-        print('Service is listening')
-
-    def on_hypothesis(self, hypothesis):
-        pass
-        # print(hypothesis)
-
-    def on_data(self, data):
-        pass
-        # print(data)
-
-    def on_close(self):
-        print("Connection closed")
-        print(self.complete_transcript)
-        return self.complete_transcript
-
-
-# this function will initiate the recognize service and pass in the AudioSource
-def recognize_using_weboscket(*args):
-    mycallback = MyRecognizeCallback()
-    speech_to_text.recognize_using_websocket(audio=audio_source,
-                                             content_type='audio/l16; rate=44100',
-                                             recognize_callback=mycallback,
-                                             interim_results=True,
-                                             split_transcript_at_phrase_end=True)
-
-###############################################
-#### Prepare the for recording using Pyaudio ##
-###############################################
-
-# Variables for recording the speech
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 
-# define callback for pyaudio to store the recording in queue
-def pyaudio_callback(in_data, frame_count, time_info, status):
-    try:
-        q.put(in_data)
-    except Full:
-        pass # discard
-    return (None, pyaudio.paContinue)
+output = []
 
-# instantiate pyaudio
-audio = pyaudio.PyAudio()
+class SpeechToText():
+    def __init__(self,api_key,callback):
+        self.callback = callback
+        self.authenticator = IAMAuthenticator(api_key)
+        self.speech_to_text = SpeechToTextV1(authenticator=self.authenticator)
+        self.status = 0
+        
+    def start(self):
+        if self.status == 1:
+            print("Audio capture already in progress.")
+        else:
+            self.status = 1
+            self.queue = Queue(maxsize=int(round(BUF_MAX_SIZE / CHUNK)))
+            self.audio_source = AudioSource(self.queue, True, True)
+            self.audio = pyaudio.PyAudio()
+            self.stream = self.audio.open(
+                format=FORMAT,
+                channels=CHANNELS,
+                rate=RATE,
+                input=True,
+                frames_per_buffer=CHUNK,
+                stream_callback=self.pyaudio_callback,
+                start=False
+            )
+            self.stream.start_stream()
+            try:
+                recognize_thread = Thread(target=self.recognize_using_weboscket, args=())
+                recognize_thread.start()
 
-# open stream using callback
-stream = audio.open(
-    format=FORMAT,
-    channels=CHANNELS,
-    rate=RATE,
-    input=True,
-    frames_per_buffer=CHUNK,
-    stream_callback=pyaudio_callback,
-    start=False
-)
+                while True:
+                    pass
+            except KeyboardInterrupt:
+                self.stop()
 
-#########################################################################
-#### Start the recording and start service to recognize the stream ######
-#########################################################################
+    def stop(self):
+        if self.status == 0:
+            print("Audio capture is not in progress. Use start command to begin recording.")
+        else:
+            self.stream.stop_stream()
+            self.stream.close()
+            self.audio.terminate()
+            self.audio_source.completed_recording()
 
-print("Enter CTRL+C to end recording...")
-stream.start_stream()
 
-try:
-    recognize_thread = Thread(target=recognize_using_weboscket, args=())
-    recognize_thread.start()
+    def pyaudio_callback(self, in_data, frame_count, time_info, status):
+        try:
+            self.queue.put(in_data)
+        except Full:
+            pass
+        return (None, pyaudio.paContinue)
 
-    while True:
-        pass
-except KeyboardInterrupt:
-    # stop recording
-    stream.stop_stream()
-    stream.close()
-    audio.terminate()
-    audio_source.completed_recording()
+    def recognize_using_weboscket(self,*args):
+        self.speech_to_text.recognize_using_websocket(audio=self.audio_source,
+                                                    content_type='audio/l16; rate=44100',
+                                                    recognize_callback=self.callback,
+                                                    interim_results=True,
+                                                    split_transcript_at_phrase_end=True,
+                                                    profanity_filter = False)
