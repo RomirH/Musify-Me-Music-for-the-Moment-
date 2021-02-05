@@ -38,7 +38,6 @@ class SpeechToText():
             recognize_thread.start()
             while True:
                 pass
-
         except KeyboardInterrupt:
             # stop recording
             self.stream.stop_stream()
@@ -90,4 +89,3 @@ class MyRecognizeCallback(RecognizeCallback):
     def on_close(self):
         print("Connection closed")
 
-SpeechToText()
