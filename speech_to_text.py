@@ -70,9 +70,10 @@ class SpeechToText():
         return (None, pyaudio.paContinue)
 
     def recognize_using_weboscket(self,*args):
-        self.speech_to_text.recognize_using_websocket(audio=self.audio_source,
-                                                    content_type='audio/l16; rate=44100',
-                                                    recognize_callback=self.callback,
-                                                    interim_results=True,
-                                                    split_transcript_at_phrase_end=True,
-                                                    profanity_filter = False)
+        self.speech_to_text.recognize_using_websocket(
+            audio=self.audio_source,
+            content_type='audio/l16; rate=44100',
+            recognize_callback=self.callback,
+            interim_results=True,
+            split_transcript_at_phrase_end=True,
+            profanity_filter = False)

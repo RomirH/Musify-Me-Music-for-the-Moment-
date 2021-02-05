@@ -12,7 +12,7 @@ class MyRecognizeCallback(RecognizeCallback):
         sentiment_thread.start()
 
 def analyze_tone(sentence):
-    print(tone_analyzer.analyze(sentence),sentence)
+    print("\nSpeaker : ", sentence, "\nTones : ",tone_analyzer.analyze(sentence))
 
 tone_analyzer = ToneAnalyzer(api_key = '3879mC57DARnUoMaGEXT8F0brMiI06nG2TzcBiBjeKR_')
 
