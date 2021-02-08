@@ -1,5 +1,6 @@
 from speech_to_text import SpeechToText
-from nlp import NLP
+from nlp import Keywords
+from search import YouTubeAPI
 from threading import Thread
 from ibm_watson.websocket import RecognizeCallback
 
@@ -10,9 +11,9 @@ class MyRecognizeCallback(RecognizeCallback):
         RecognizeCallback.__init__(self)
 
     def on_transcription(self, transcript):
-        # Opens up a new thread to process speech input
-        nlp_thread = Thread(target=getKeywordsAndEmotion, args=(transcript[0]['transcript'],))
-        nlp_thread.start()
+        # Opens up a new thread to process speech input and search for a video
+        search_thread = Thread(target=searchKeywords, args=(transcript[0]['transcript'],))
+        search_thread.start()
 
     def on_connected(self):
         print('Connection was successful')
@@ -25,26 +26,24 @@ class MyRecognizeCallback(RecognizeCallback):
 
 
 
-def getKeywordsAndEmotion(text):
-    # Processes, Prints and Returns the keywords and dominating emotions of the speech input
-    keywords = nlp.process(text)
-
-    for kw in keywords:
-
-        print( 
-            "\nKeyword :",kw[0],
-            "\nEmotion :",kw[1]
-        )
-
-    return keywords
+def searchKeywords(text):
+    # Processes speech into emotions and keywords
+    kwds = keywords.getKeywords(text)
+    print(kwds)
+    # Search youtube using those keywords
+    youtube.search(kwds)
 
 
 # Begin an instance of the NLP class
-nlp = NLP(api_key = 'I8V3ujhV1XG3VZDxV8sWc3wcD_CNdmdk4RYgJLP9x3Ne')
+keywords = Keywords(api_key = 'I8V3ujhV1XG3VZDxV8sWc3wcD_CNdmdk4RYgJLP9x3Ne')
 
 
 # Begin an instance of the SpeechToText class
 speech_to_text = SpeechToText(api_key = '1gJQDKekWxkirik9EdSYTYRA42vd0UIk2aFONeAD-aYU', callback = MyRecognizeCallback())
+
+
+# Begin an instance of the YouTubeAPI class
+youtube = YouTubeAPI(api_key='AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g')
 
 
 # Start recording and processing speech
