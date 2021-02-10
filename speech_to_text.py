@@ -3,11 +3,7 @@ from ibm_watson import SpeechToTextV1
 from ibm_watson.websocket import AudioSource
 from threading import Thread
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
-
-try:
-    from Queue import Queue, Full
-except ImportError:
-    from queue import Queue, Full
+from queue import Queue, Full
 
 CHUNK = 1024
 BUF_MAX_SIZE = CHUNK * 10
@@ -16,10 +12,9 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 
-output = []
-
 class SpeechToText():
     def __init__(self,api_key,callback):
+        # Initialize connection to IBM Watson API
         self.callback = callback
         self.authenticator = IAMAuthenticator(api_key)
         self.speech_to_text = SpeechToTextV1(authenticator=self.authenticator)
@@ -43,6 +38,7 @@ class SpeechToText():
                 start=False
             )
             self.stream.start_stream()
+            print("Audio capture in progress.")
             try:
                 recognize_thread = Thread(target=self.recognize_using_weboscket, args=())
                 recognize_thread.start()
@@ -56,6 +52,7 @@ class SpeechToText():
         if self.status == 0:
             print("Audio capture is not in progress. Use start command to begin recording.")
         else:
+            print("Audio capture terminating.")
             self.stream.stop_stream()
             self.stream.close()
             self.audio.terminate()
@@ -76,4 +73,8 @@ class SpeechToText():
             recognize_callback=self.callback,
             interim_results=True,
             split_transcript_at_phrase_end=True,
-            profanity_filter = False)
+            profanity_filter = False,
+            speech_detector_sensitivity = 0.7
+        )
+
+        
