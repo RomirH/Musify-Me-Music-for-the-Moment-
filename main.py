@@ -34,7 +34,7 @@ def searchKeywords(text):
     youtube.search(kwds)
 
 
-# Begin an instance of the NLP class
+# Begin an instance of the NLP Keyword class
 keywords = Keywords(api_key = 'I8V3ujhV1XG3VZDxV8sWc3wcD_CNdmdk4RYgJLP9x3Ne')
 
 
