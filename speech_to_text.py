@@ -77,4 +77,5 @@ class SpeechToText():
             speech_detector_sensitivity = 0.7
         )
 
+
         

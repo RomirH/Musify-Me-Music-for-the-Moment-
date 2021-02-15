@@ -30,8 +30,19 @@ def searchKeywords(text):
     # Processes speech into emotions and keywords
     kwds = keywords.getKeywords(text)
     print(kwds)
+    print(text)
+    if "start music listener" in text.lower():
+        print('ok')
+        speech_to_text.start()
+        return
+    elif "stop music listener" in text.lower():
+        print('I heard you')
+        speech_to_text.stop()
+        return
     # Search youtube using those keywords
     youtube.search(kwds)
+
+
 
 
 # Begin an instance of the NLP Keyword class
@@ -48,3 +59,5 @@ youtube = YouTubeAPI(api_key='AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g')
 
 # Start recording and processing speech
 speech_to_text.start()
+
+
