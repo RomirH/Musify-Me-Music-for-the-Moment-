@@ -4,6 +4,7 @@ from ibm_watson.websocket import AudioSource
 from threading import Thread
 from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from queue import Queue, Full
+import time
 
 CHUNK = 1024
 BUF_MAX_SIZE = CHUNK * 10
@@ -38,25 +39,30 @@ class SpeechToText():
                 start=False
             )
             self.stream.start_stream()
-            print("Audio capture in progress.")
             try:
                 recognize_thread = Thread(target=self.recognize_using_weboscket, args=())
                 recognize_thread.start()
 
-                while True:
+                while self.status:
                     pass
             except KeyboardInterrupt:
                 self.stop()
 
-    def stop(self):
+    def stop(self,restart=False):
         if self.status == 0:
-            print("Audio capture is not in progress. Use start command to begin recording.")
+            print("Audio capture not in progress.")
         else:
-            print("Audio capture terminating.")
+            if not restart : print("Audio capture terminating.")
+            self.status = 0
             self.stream.stop_stream()
             self.stream.close()
             self.audio.terminate()
             self.audio_source.completed_recording()
+    def restart(self):
+        print("Restarting Audio Capture.")
+        self.stop(restart = True)
+        time.sleep(3)
+        self.start()
 
 
     def pyaudio_callback(self, in_data, frame_count, time_info, status):

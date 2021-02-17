@@ -17,7 +17,7 @@ class Keywords():
             # Raw data containing keywords and emotions of the input string
             response = self.nlp.analyze(
                 text = text,
-                features = Features(keywords=KeywordsOptions(emotion=True))
+                features = Features(keywords=KeywordsOptions())
             ).get_result()
             
             # Initializing output list

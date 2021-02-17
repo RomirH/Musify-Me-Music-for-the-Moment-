@@ -12,7 +12,7 @@ class MyRecognizeCallback(RecognizeCallback):
 
     def on_transcription(self, transcript):
         # Opens up a new thread to process speech input and search for a video
-        search_thread = Thread(target=searchKeywords, args=(transcript[0]['transcript'],))
+        search_thread = Thread(target=handleSpeechInput, args=(transcript[0]['transcript'],))
         search_thread.start()
 
     def on_connected(self):
@@ -20,30 +20,28 @@ class MyRecognizeCallback(RecognizeCallback):
 
     def on_error(self, error):
         print('Error received: {}'.format(error))
-        print('Restarting Listener')
-        speech_to_text.stop()
-        speech_to_text.start()
+        speech_to_text.restart()
 
     def on_inactivity_timeout(self, error):
         print('Inactivity timeout: {}'.format(error))
 
 
 
-def searchKeywords(text):
-    # Processes speech into emotions and keywords
-    kwds = keywords.getKeywords(text)
-    print(kwds)
-    print(text)
-    if "start music listener" in text.lower():
-        print('ok')
+def handleSpeechInput(text):
+
+    if "restart music listener" in text.lower():
+        speech_to_text.restart()
+
+    elif "start music listener" in text.lower():
         speech_to_text.start()
-        return
+
     elif "stop music listener" in text.lower():
-        print('I heard you')
         speech_to_text.stop()
-        return
-    # Search youtube using those keywords
-    youtube.search(kwds)
+
+    else :
+        # Processes speech into emotions and keywords
+        kwds = keywords.getKeywords(text)
+        youtube.search(kwds)
 
 
 
