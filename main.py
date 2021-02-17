@@ -20,6 +20,9 @@ class MyRecognizeCallback(RecognizeCallback):
 
     def on_error(self, error):
         print('Error received: {}'.format(error))
+        print('Restarting Listener')
+        speech_to_text.stop()
+        speech_to_text.start()
 
     def on_inactivity_timeout(self, error):
         print('Inactivity timeout: {}'.format(error))
