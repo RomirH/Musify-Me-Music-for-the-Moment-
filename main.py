@@ -3,12 +3,13 @@ from nlp import Keywords
 from search import YouTubeAPI
 from threading import Thread
 from ibm_watson.websocket import RecognizeCallback
-
+# from song_queue import SongQueue
 
 
 class MyRecognizeCallback(RecognizeCallback):
     def __init__(self):
         RecognizeCallback.__init__(self)
+        # Do not add any methods to callback class initialization
 
     def on_transcription(self, transcript):
         # Opens up a new thread to process speech input and search for a video
@@ -37,11 +38,21 @@ def handleSpeechInput(text):
 
     elif "stop music listener" in text.lower():
         speech_to_text.stop()
-
-    else :
+    else:
         # Processes speech into emotions and keywords
         kwds = keywords.getKeywords(text)
         youtube.search(kwds)
+    # elif squeue.timer < 30 seconds:
+        # kwds = keywords.getKeywords(conversation + text)
+        # sentiment = sentiment_analyzer(conversation + text)
+        # url, video_length =  youtube.search(kwds,sentiment)
+        # squeue.add(url,video_length)
+    # elif squeue.timer == done:
+        # next_song = squeue.pop_song()
+        # youtube.play(next_song)
+    # else :
+        # conversation += text
+        
 
 
 
@@ -56,6 +67,10 @@ speech_to_text = SpeechToText(api_key = '1gJQDKekWxkirik9EdSYTYRA42vd0UIk2aFONeA
 
 # Begin an instance of the YouTubeAPI class
 youtube = YouTubeAPI(api_key='AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g')
+
+
+# Begin an instance of the SongQueue class
+# squeue = SongQueue()
 
 
 # Start recording and processing speech
