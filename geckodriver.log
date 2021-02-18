@@ -1,0 +1,137 @@
+1613619326221	geckodriver	INFO	Listening on 127.0.0.1:56992
+1613619329269	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofileEMGzHD"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613619333704	Marionette	INFO	Listening on port 57002
+1613619334093	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613619334115	Marionette	ERROR	[15] No reply from Marionette:Register
+1613619356746	Marionette	INFO	Stopped listening on port 57002
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613619387215	geckodriver	INFO	Listening on 127.0.0.1:57064
+1613619390276	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofilezTQzhP"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613619393813	Marionette	INFO	Listening on port 57073
+1613619393976	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613619393997	Marionette	ERROR	[15] No reply from Marionette:Register
+1613619396503	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1613619763347	Marionette	INFO	Stopped listening on port 57073
+1613619900602	geckodriver	INFO	Listening on 127.0.0.1:57286
+1613619903644	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofile4DQ8S1"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613619907436	Marionette	INFO	Listening on port 57294
+1613619907837	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613619907855	Marionette	ERROR	[15] No reply from Marionette:Register
+1613619910163	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+[Child 27284, MediaDecoderStateMachine #1] WARNING: Decoder=2c63db46800 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+[Child 27284, MediaDecoderStateMachine #1] WARNING: Decoder=2c63db46800 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+[Child 27284, MediaDecoderStateMachine #1] WARNING: Decoder=2c63db46800 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+1613620075897	Marionette	INFO	Stopped listening on port 57294
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613620091870	geckodriver	INFO	Listening on 127.0.0.1:57403
+1613620094968	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofileCqQPQH"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613620098479	Marionette	INFO	Listening on port 57411
+1613620098685	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613620098708	Marionette	ERROR	[15] No reply from Marionette:Register
+1613620100873	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+[Child 21980, MediaDecoderStateMachine #1] WARNING: Decoder=27c46a0a400 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+[Child 21980, MediaDecoderStateMachine #1] WARNING: Decoder=27c46a0a400 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+[Child 21980, MediaDecoderStateMachine #1] WARNING: Decoder=27c46a0a400 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+[Child 21980, MediaDecoderStateMachine #1] WARNING: Decoder=27c46a0a400 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+1613620135391	Marionette	INFO	Stopped listening on port 57411
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613620146953	geckodriver	INFO	Listening on 127.0.0.1:57510
+1613620150025	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofiletBZMVt"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613620153697	Marionette	INFO	Listening on port 57521
+1613620154233	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613620154256	Marionette	ERROR	[15] No reply from Marionette:Register
+1613620156529	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1613620172809	Marionette	INFO	Stopped listening on port 57521
+[Child 28032, MediaDecoderStateMachine #1] WARNING: Decoder=22c4de7e000 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+[Child 28032, MediaDecoderStateMachine #1] WARNING: Decoder=22c4de7e000 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+[Child 28032, MediaDecoderStateMachine #1] WARNING: Decoder=22c4de7e000 Decode error: NS_ERROR_DOM_MEDIA_FATAL_ERR (0x806e0005) - RefPtr<MediaSourceTrackDemuxer::SamplesPromise> __cdecl mozilla::MediaSourceTrackDemuxer::DoGetSamples(int32_t): manager is detached.: file /builds/worker/checkouts/gecko/dom/media/MediaDecoderStateMachine.cpp:3465
+1613620745369	geckodriver	INFO	Listening on 127.0.0.1:57688
+1613620748393	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofile8exmfc"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613620752158	Marionette	INFO	Listening on port 57696
+1613620752600	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613620752617	Marionette	ERROR	[15] No reply from Marionette:Register
+1613620818374	Marionette	INFO	Stopped listening on port 57696
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613620850854	geckodriver	INFO	Listening on 127.0.0.1:57762
+1613620853886	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofileMjucb6"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613620857559	Marionette	INFO	Listening on port 57771
+1613620858095	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613620858114	Marionette	ERROR	[15] No reply from Marionette:Register
+1613620860357	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1613620877634	Marionette	INFO	Stopped listening on port 57771
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613621051845	geckodriver	INFO	Listening on 127.0.0.1:57895
+1613621054893	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofileYFLuCC"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613621058694	Marionette	INFO	Listening on port 57903
+1613621059107	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613621059127	Marionette	ERROR	[15] No reply from Marionette:Register
+1613621061421	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1613621078189	Marionette	INFO	Stopped listening on port 57903
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613621829794	geckodriver	INFO	Listening on 127.0.0.1:62224
+1613621832845	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofile30vCHi"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613621836793	Marionette	INFO	Listening on port 62233
+1613621837039	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613621837058	Marionette	ERROR	[15] No reply from Marionette:Register
+1613621839686	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1613621856087	Marionette	INFO	Stopped listening on port 62233
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613621857632	geckodriver	INFO	Listening on 127.0.0.1:62317
+1613621861893	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofileWzUgjM"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613621865646	Marionette	INFO	Listening on port 62325
+1613621866096	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613621866117	Marionette	ERROR	[15] No reply from Marionette:Register
+1613621868381	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+ner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofileQVHNnR"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613622156608	Marionette	INFO	Listening on port 62458
+1613622156975	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613622156997	Marionette	ERROR	[15] No reply from Marionette:Register
+1613622159750	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
+1613622177155	Marionette	INFO	Stopped listening on port 62458
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1613622178782	geckodriver	INFO	Listening on 127.0.0.1:62539
+1613622181816	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\jujuc\\AppData\\Local\\Temp\\rust_mozprofileKfIXV7"
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1613622185821	Marionette	INFO	Listening on port 62547
+1613622186006	Marionette	WARN	TLS certificate errors will be ignored for this session
+1613622186027	Marionette	ERROR	[15] No reply from Marionette:Register
+1613622192727	Marionette	WARN	Ignoring event 'pageshow' because document has an invalid readyState of 'uninitialized'.
