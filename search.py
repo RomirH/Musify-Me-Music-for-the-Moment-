@@ -6,6 +6,10 @@ from googleapiclient.discovery import build #for YouTube API
 import time #for testing
 import sys #for printing errors and exit codes
 from threading import Lock #for thread locks
+import urllib.request as urllib2
+import http.cookiejar as cookielib
+import json
+import time
 #pip install selenium and google-api-python-client
 
 class YouTubeAPI():
@@ -13,6 +17,22 @@ class YouTubeAPI():
     def __init__(self,api_key):
         self.youtube = build("youtube", "v3", developerKey=api_key)
         webbrowser.register("chrome", None, webbrowser.BackgroundBrowser("C://Program Files (x86)//Google//Chrome//Application//chrome"))
+
+    def file_get_contents(url):
+        url = str(url).replace(" ", "+") # just in case, no space in url
+        hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+               'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+               'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+               'Accept-Encoding': 'none',
+               'Accept-Language': 'en-US,en;q=0.8',
+               'Connection': 'keep-alive'}
+        req = urllib2.Request(url, headers=hdr)
+        try:
+            page = urllib2.urlopen(req)
+            return page.read()
+        except urllib2.HTTPError as e:
+            print(e.fp.read())
+        return ''
 
     def search(self,keywords):
         #Parameters: Takes in a list of keywords
@@ -32,10 +52,10 @@ class YouTubeAPI():
                 query_list += "+"
             
         #build request
-        request = self.youtube.search().list(q=query_list, part="snippet",type="video",videoCategoryId='10')
+        request = self.youtube.search().list(q=query_list, part="contentDetails",type="video",videoCategoryId='10')
         response = request.execute()
         
-        #print(response.items())
+        print(response.items())
         #take a look at the json response
 
         #just as an example
@@ -65,6 +85,7 @@ class SongQueue():
         self.driver = driver
         #if you're having driver issues, see SongQueue.play_first
 
+
     def __del__(self):
         #avoid leaving sockets hanging?
         #self.req_format.close()
@@ -76,7 +97,7 @@ class SongQueue():
     def add_by_kw(self, keywords: list, raw_num_to_add = 2):
         """queries YouTube based on kw and adds to list.  Args: ListOfKeywords, #songs-to-add(optional)"""
         #default length of songs to add is 5
-        #Return: Returns a json list which includes video url, length, id, etc
+        #Return: Returns the length of 
 
         try: 
             num_to_add = abs(int(raw_num_to_add))
@@ -110,6 +131,7 @@ class SongQueue():
                                                 #relatedToVideoId = -------
                                                 #returned results will be related to the id input
                                                 #could be used to find new songs
+        
         response = request.execute() #send request
         
         #print(response.items())
@@ -124,7 +146,23 @@ class SongQueue():
         with self.qlock:
             for i in range(num_to_add):
                 song = response['items'][i]
+                #get song details -> length
+                details = YouTubeAPI.file_get_contents("https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=" + song['id']['videoId'] + "&key=AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g")
+                #load json bytes
+                translate = json.loads(details)
+                duration = translate['items'][0]['contentDetails']['duration']
+                #transform ISO-8601 to seconds
+                try:
+                    minutes = int(duration[2:4])
+                except:
+                    minutes = int(duration[2])
+                try:
+                    seconds = int(duration[-3:-1])
+                except:
+                    seconds = int(duration[-2])
+                LENGTH = 60*minutes + seconds
                 self.queue.append((self.url_base + song['id']['videoId'], LENGTH))
+                
 
     def play(self):  
         """plays opened video""" 
@@ -146,7 +184,7 @@ class SongQueue():
         #any issues with self.driver, refer to the following
         # https://selenium-python.readthedocs.io/installation.html
         if self.driver == 'chrome':
-            browser = webdriver.Chrome()
+            browser = webdriver.Chrome(executable_path="C://cs338//new//Musify-Me-Music-for-the-Moment-/chromedriver.exe")
         elif self.driver == 'firefox':
             #webbrowser.register("firefox", None, webbrowser.BackgroundBrowser("C:\Program Files\Mozilla Firefox\\firefox"))
             browser = webdriver.Firefox(executable_path='C:\WebDriver\\bin\geckodriver')
@@ -154,13 +192,27 @@ class SongQueue():
         #retreive earliest added url from song queue
         (first_url, song_len) = self.queue.pop(0) 
         #length could be useful in determining when to play next, maybe a timer as class attribute
-        sys.stdout.write('playing a song for'+ str(song_len)+'s\n')
+        sys.stdout.write('playing a song for '+ str(song_len)+'s\n')
         #it would be cool to save the song title too, so we can give preview of next
 
         #play next song and add to open tabs
         browser.get(first_url)
         with self.tablock:
             self.tabs.append(browser)
+
+        self.play()
+        """
+        t0 = time.time()
+        keep_playing = True
+        while(keep_playing):
+            t1 = time.time()
+            passed = t1 - t0
+            print(passed)
+            if(song_len - passed < 240):
+                keep_playing = False
+        self.pause()
+        self.close_tab()
+        """
         #webbrowser.get('firefox').open(url)
 
     def close_tab(self):
@@ -193,13 +245,17 @@ class SongQueue():
                     print(e)
                     sys.exit(-1)
 
+
+
+
+"""
 def test_SongQueue():
     KW1 = ['yunosuke', 'blank', 'catalyst']
     KW2 = ['reol', 'end']
     KW3 = ['tolerance', 'exotica']
     KEY = 'AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g'
     PAUSE = 5
-    DRIVER = 'firefox'
+    DRIVER = 'chrome'
 
     try: queue=SongQueue(KEY, driver=DRIVER)
     except Exception as e: 
@@ -265,3 +321,4 @@ def test_SongQueue():
     sys.stdout.write('SongQueue tests complete')
 
 test_SongQueue()
+"""

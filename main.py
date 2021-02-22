@@ -5,6 +5,7 @@ from threading import Thread
 from ibm_watson.websocket import RecognizeCallback
 
 
+
 class MyRecognizeCallback(RecognizeCallback):
     def __init__(self):
         RecognizeCallback.__init__(self)
@@ -39,8 +40,15 @@ def handleSpeechInput(text):
 
     else :
         # Processes speech into emotions and keywords
+        #kwds = keywords.getKeywords(text)
+        #youtube.search(kwds)
+        
         kwds = keywords.getKeywords(text)
-        youtube.search(kwds)
+        print(kwds)
+        SQ.add_by_kw(kwds)
+        SQ.play_first()
+        print(SQ.queue)
+
 
 ###commented out prep for integration of SongQueue class###
 #class MyRecognizeCallback(RecognizeCallback):
@@ -91,7 +99,7 @@ speech_to_text = SpeechToText(api_key = '1gJQDKekWxkirik9EdSYTYRA42vd0UIk2aFONeA
 
 # Begin an instance of the YouTubeAPI class
 youtube = YouTubeAPI(api_key='AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g')
-
+SQ = SongQueue(api_key='AIzaSyCjgFgk2bdUS8cr74K9wiopWDdfXhwgt9g', driver="chrome")
 # Start recording and processing speech
 speech_to_text.start()
 
